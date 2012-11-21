@@ -12,7 +12,7 @@ Check the examples package to see the Fibonacci example.
 
     Implement run() with your timed benchmark code.
 
-		Implement verify() with non-timed verification code. 
+    Implement verify() with non-timed verification code. 
 
  * Edit ABMAsyncTask.doInBackground()'s first line to instantiate your benchmark class.
 
