@@ -10,6 +10,7 @@ public class ABMAsyncTask extends AsyncTask<Void, Void, Long> {
 
 	private TextView resultText;
 	private String tag = "ABM";
+	private boolean lastRunSuccessful = false;
 	
 	public ABMAsyncTask(View view) {
 		resultText = (TextView) view;
@@ -17,7 +18,7 @@ public class ABMAsyncTask extends AsyncTask<Void, Void, Long> {
 	
 	protected void onPreExecute() {
 		resultText.setText("Execution time: (running...)");
-		Log.i(tag, "ABM START");
+		Log.i(tag, "ABM Start");
 	}
 	
 	protected Long doInBackground(Void... voids) {
@@ -37,13 +38,19 @@ public class ABMAsyncTask extends AsyncTask<Void, Void, Long> {
 		
 		long timeEnd = System.currentTimeMillis();
 		
-		Log.i(tag, "Result: " + ((Fibonacci)benchmark).longResult);
+		lastRunSuccessful = benchmark.verify();
 		
 		return (timeEnd - timeStart);
 	}
 	
-	protected void onPostExecute(Long result) {
-		resultText.setText("Execution time: " + result + " ms");
-		Log.i(tag, "ABM END - TIME: " + result + " ms");
+	protected void onPostExecute(Long runtime) {
+		if (lastRunSuccessful) {
+			resultText.setText("Execution time: " + runtime + " ms");
+			Log.i(tag, "ABM End - Time: " + runtime + " ms");
+		} else {
+			resultText.setText("Execution time: " + runtime + " ms\nVerify failed!");
+			Log.i(tag, "ABM End - Time: " + runtime + " ms - Verify failed!");
+		}
+		
 	}
 }
