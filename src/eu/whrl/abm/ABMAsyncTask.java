@@ -37,6 +37,8 @@ public class ABMAsyncTask extends AsyncTask<Void, Void, Long> {
 		
 		long timeEnd = System.currentTimeMillis();
 		
+		Log.i(tag, "Result: " + ((Fibonacci)benchmark).longResult);
+		
 		return (timeEnd - timeStart);
 	}
 	

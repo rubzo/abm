@@ -9,7 +9,7 @@ public class Fibonacci implements ABM {
 	public long bigIntegerPlaces = 65536L;
 	public BigInteger bigIntegerResult = null;
 	
-	public long longPlaces = 80000000L;
+	public long longPlaces = 8000L;
 	public long longResult = 0;
 	
 	/* 
@@ -23,7 +23,9 @@ public class Fibonacci implements ABM {
 	 * Place any code that you want to be timed in your benchmark here
 	 */
 	public void run() {
-		runLong();
+		for (int i = 0; i < 10000; i++) {
+			runLong();
+		}
 	}
 	
 	private void runBigInteger() {
